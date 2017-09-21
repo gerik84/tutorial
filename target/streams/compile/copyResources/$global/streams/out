@@ -1,8 +1,0 @@
-[debug] Copy resource mappings: 
-[debug] 	(/home/redline/project/java/tutorial/conf/evolutions,/home/redline/project/java/tutorial/target/scala-2.12/classes/evolutions)
-[debug] 	(/home/redline/project/java/tutorial/conf/application.conf,/home/redline/project/java/tutorial/target/scala-2.12/classes/application.conf)
-[debug] 	(/home/redline/project/java/tutorial/conf/routes,/home/redline/project/java/tutorial/target/scala-2.12/classes/routes)
-[debug] 	(/home/redline/project/java/tutorial/conf/logback.xml,/home/redline/project/java/tutorial/target/scala-2.12/classes/logback.xml)
-[debug] 	(/home/redline/project/java/tutorial/conf/evolutions/default,/home/redline/project/java/tutorial/target/scala-2.12/classes/evolutions/default)
-[debug] 	(/home/redline/project/java/tutorial/conf/evolutions/default/2.sql,/home/redline/project/java/tutorial/target/scala-2.12/classes/evolutions/default/2.sql)
-[debug] 	(/home/redline/project/java/tutorial/conf/evolutions/default/1.sql,/home/redline/project/java/tutorial/target/scala-2.12/classes/evolutions/default/1.sql)
