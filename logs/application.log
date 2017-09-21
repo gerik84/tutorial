@@ -1,0 +1,11 @@
+2017-09-21 17:06:51,570 [INFO] from application in play-dev-mode-akka.actor.default-dispatcher-3 - Creating Pool for datasource 'default'
+2017-09-21 17:06:51,727 [INFO] from play.api.db.DefaultDBApi in play-dev-mode-akka.actor.default-dispatcher-3 - Database [default] connected at jdbc:postgresql://localhost/tutorial_db
+2017-09-21 17:06:52,761 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-3 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+
+2017-09-21 17:06:52,847 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-3 - Application started (Dev)
+2017-09-21 17:06:53,082 [WARN] from play.filters.CSRF in play-dev-mode-akka.actor.default-dispatcher-3 - [CSRF] Check failed because no token found in headers for /signup
