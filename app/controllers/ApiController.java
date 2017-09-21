@@ -1,12 +1,15 @@
 package controllers;
 
+import akka.actor.ActorSystem;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.inject.Inject;
 import models.App;
 import models.Role;
 import models.Session;
 import models.User;
 import play.mvc.Result;
+import scala.concurrent.ExecutionContextExecutor;
 import utils.Auth;
 
 import java.util.UUID;
@@ -17,6 +20,11 @@ import static play.libs.Json.newObject;
  * Created by pavel on 21.09.17.
  */
 public class ApiController extends BaseController {
+
+    @Inject
+    public ApiController(ActorSystem actorSystem, ExecutionContextExecutor exec) {
+        super(actorSystem, exec);
+    }
 
     public Result signup() {
         App app = getApp();

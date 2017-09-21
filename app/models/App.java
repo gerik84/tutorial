@@ -10,7 +10,7 @@ import javax.persistence.Enumerated;
  * Created by pavel on 21.09.17.
  */
 @Entity
-public class App extends ModerationModel {
+public class App extends ModerateModel {
 
     public TYPE getType() {
         return type;

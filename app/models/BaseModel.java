@@ -2,6 +2,7 @@ package models;
 
 import akka.actor.ActorSystem;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.ebean.Ebean;
 import io.ebean.Model;
 import utils.Auth;
 
@@ -116,6 +117,19 @@ abstract public class BaseModel extends Model {
         super.update(server);
     }
 
+    public void postCreation() {
+    }
+
+
+    public static <T> T getByID(Class<T> model, UUID id) {
+        if(id == null) return null;
+        return Ebean.find(model).where().eq("id", id).findUnique();
+    }
+
+    public static <T> T getByID(Class<T> model, String id) {
+        if(id == null) return null;
+        return getByID(model, UUID.fromString(id));
+    }
 
 
 }

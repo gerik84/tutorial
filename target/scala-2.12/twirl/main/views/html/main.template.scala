@@ -68,8 +68,8 @@ Seq[Any](format.raw/*7.32*/("""
 
               /*
                   -- GENERATED --
-                  DATE: Thu Sep 21 13:25:28 SAMT 2017
-                  SOURCE: /home/pavel/projects/java/backend/tutorial/app/views/main.scala.html
+                  DATE: Thu Sep 21 18:46:27 SAMT 2017
+                  SOURCE: /home/redline/project/java/tutorial/app/views/main.scala.html
                   HASH: 863271db3bc90c425db2fb95e8fb0ff62c83f9b4
                   MATRIX: 1206->260|1331->290|1359->292|1439->397|1475->406|1510->414|1536->419|1625->481|1640->487|1703->528|1791->589|1806->595|1867->634|1929->758|1966->768|1994->775|2031->785|2072->799|2087->805|2148->845
                   LINES: 33->7|38->7|40->9|43->12|44->13|44->13|44->13|45->14|45->14|45->14|46->15|46->15|46->15|49->19|50->20|50->20|52->22|52->22|52->22|52->22

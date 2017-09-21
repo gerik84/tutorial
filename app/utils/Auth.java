@@ -1,13 +1,12 @@
 package utils;
 
 import models.App;
+import models.Role;
 import models.Role.ROLE;
 import models.User;
 import play.mvc.Http;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Optional;
+import java.util.*;
 
 import static play.mvc.Http.HeaderNames.AUTHORIZATION;
 
@@ -21,6 +20,10 @@ public class Auth {
 
     public static final ROLE[] u_guest = {ROLE.view};
     public static HashSet<ROLE> s_type_guest = new HashSet<>(Arrays.asList(u_guest));
+
+    public static final ROLE[] u_moderator = {ROLE.view, ROLE.create};
+    public static HashSet<ROLE> s_moderator = new HashSet<>(Arrays.asList(u_moderator));
+
 
     public static User getUser(Http.Request request, boolean allowFromCookie) {
         Optional<String> header = request.header(AUTHORIZATION);
@@ -38,5 +41,9 @@ public class Auth {
     public static App getApp(Http.Request request) {
         String appKey = request.getHeader(APP_KEY_HEADER);
         return App.getAppByKey(appKey);
+    }
+
+    public static boolean isAllowedForUser(User user, HashSet<Role.ROLE> allowedRoles/*, Map<User.UserType, HashSet<ROLE>> allowedRoles*/) {
+        return user != null && !(allowedRoles != null && !allowedRoles.isEmpty() && !user.hasKitRoles(allowedRoles));
     }
 }

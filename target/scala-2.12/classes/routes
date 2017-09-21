@@ -3,12 +3,17 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET         /                    controllers.HomeController.index
-GET         /test                controllers.HomeController.test
+GET          /                    controllers.HomeController.index
+GET          /test                controllers.HomeController.test
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file        controllers.Assets.versioned(path="/public", file: Asset)
+GET          /assets/*file        controllers.Assets.versioned(path="/public", file: Asset)
 
 
-GET         /news                controllers.NewsController.getNews
-POST        /signup              controllers.ApiController.signup
+POST         /signup              controllers.ApiController.signup
+
+#NEWS
+GET          /news                controllers.NewsController.getNews
+POST         /news                controllers.NewsController.createNews
+PATCH        /news/:ID          controllers.NewsController.modifyNews(ID:java.util.UUID)
+DELETE       /news/:ID          controllers.NewsController.deleteNews(ID:java.util.UUID)

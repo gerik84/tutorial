@@ -4,6 +4,7 @@ import io.ebean.Ebean;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,7 +13,7 @@ import java.util.UUID;
  */
 @Entity
 @Table(name="users")
-public class User extends ModerationModel {
+public class User extends ModerateModel {
 
     public UUID getAppID() {
         return appID;
@@ -115,6 +116,21 @@ public class User extends ModerationModel {
     public static User getUser(UUID id) {
         if(id == null) return null;
         return Ebean.find(User.class).where().eq("id", id).findUnique();
+    }
+
+    public boolean hasKitRoles(HashSet<Role.ROLE> roles) {
+        if (roles == null || roles.size() == 0) {
+            return true;
+        }
+        final Integer[] countAllow = {0};
+        roles.forEach(access -> {
+            for (Role role : this.roles) {
+                if (role.getRole() == access) {
+                    countAllow[0]++;
+                }
+            }
+        });
+        return countAllow[0] != 0 && countAllow[0] == roles.size();
     }
 
 

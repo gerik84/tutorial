@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/home/pavel/projects/java/backend/tutorial/conf/routes
-// @DATE:Thu Sep 21 16:59:40 SAMT 2017
+// @SOURCE:/home/redline/project/java/tutorial/conf/routes
+// @DATE:Thu Sep 21 21:04:36 SAMT 2017
 
 import play.api.mvc.Call
 
@@ -12,17 +12,35 @@ import _root_.play.libs.F
 // @LINE:6
 package controllers {
 
-  // @LINE:13
+  // @LINE:16
   class ReverseNewsController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:13
+    // @LINE:16
     def getNews(): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "news")
+    }
+  
+    // @LINE:17
+    def createNews(): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "news")
+    }
+  
+    // @LINE:19
+    def deleteNews(ID:java.util.UUID): Call = {
+      
+      Call("DELETE", _prefix + { _defaultPrefix } + "news/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[java.util.UUID]].unbind("ID", ID)))
+    }
+  
+    // @LINE:18
+    def modifyNews(ID:java.util.UUID): Call = {
+      
+      Call("PATCH", _prefix + { _defaultPrefix } + "news/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[java.util.UUID]].unbind("ID", ID)))
     }
   
   }
@@ -63,14 +81,14 @@ package controllers {
   
   }
 
-  // @LINE:14
+  // @LINE:13
   class ReverseApiController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:14
+    // @LINE:13
     def signup(): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "signup")

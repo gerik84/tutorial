@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/home/pavel/projects/java/backend/tutorial/conf/routes
-// @DATE:Thu Sep 21 16:59:40 SAMT 2017
+// @SOURCE:/home/redline/project/java/tutorial/conf/routes
+// @DATE:Thu Sep 21 21:04:36 SAMT 2017
 
 package controllers;
 

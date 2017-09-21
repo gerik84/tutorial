@@ -1,417 +1,423 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="PostgreSQL - tutorial_db@localhost">
   <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.6">
-    <database id="1" name="tutorial_db">
-      <object-id>397688</object-id>
-      <visible>1</visible>
-    </database>
-    <database id="2" name="postgres">
+    <database id="1" name="postgres">
       <object-id>12415</object-id>
     </database>
-    <database id="3" name="hrc_db">
+    <database id="2" name="futuris_db">
       <object-id>16384</object-id>
     </database>
-    <database id="4" name="futuris_db">
-      <object-id>17220</object-id>
+    <database id="3" name="tutorial_db">
+      <object-id>19269</object-id>
+      <visible>1</visible>
     </database>
-    <schema id="5" parent="1" name="public">
+    <database id="4" name="hrc_db">
+      <object-id>16386</object-id>
+    </database>
+    <database id="5" name="oe_auth_db">
+      <object-id>17740</object-id>
+    </database>
+    <database id="6" name="tutorial_hrc">
+      <object-id>19267</object-id>
+    </database>
+    <schema id="7" parent="3" name="public">
       <object-id>2200</object-id>
       <visible>1</visible>
-      <introspection-state-number>4435513</introspection-state-number>
-      <introspection-timestamp>2017-09-21.17:04:53.651</introspection-timestamp>
+      <introspection-state-number>31677</introspection-state-number>
+      <introspection-timestamp>2017-09-21.21:16:06.598</introspection-timestamp>
     </schema>
-    <schema id="6" parent="1" name="pg_catalog">
+    <schema id="8" parent="3" name="pg_catalog">
       <object-id>11</object-id>
     </schema>
-    <schema id="7" parent="1" name="pg_toast">
+    <schema id="9" parent="3" name="pg_toast">
       <object-id>99</object-id>
     </schema>
-    <schema id="8" parent="1" name="pg_temp_1">
+    <schema id="10" parent="3" name="pg_temp_1">
       <object-id>11816</object-id>
     </schema>
-    <schema id="9" parent="1" name="pg_toast_temp_1">
+    <schema id="11" parent="3" name="pg_toast_temp_1">
       <object-id>11817</object-id>
     </schema>
-    <schema id="10" parent="1" name="information_schema">
+    <schema id="12" parent="3" name="information_schema">
       <object-id>12123</object-id>
     </schema>
-    <table id="11" parent="5" name="app">
-      <object-id>398099</object-id>
-      <state-number>4435503</state-number>
+    <table id="13" parent="7" name="app">
+      <object-id>19548</object-id>
+      <state-number>31667</state-number>
     </table>
-    <table id="12" parent="5" name="news">
-      <object-id>398109</object-id>
-      <state-number>4435504</state-number>
+    <table id="14" parent="7" name="news">
+      <object-id>19558</object-id>
+      <state-number>31668</state-number>
     </table>
-    <table id="13" parent="5" name="play_evolutions">
-      <object-id>398091</object-id>
-      <state-number>4435501</state-number>
+    <table id="15" parent="7" name="play_evolutions">
+      <object-id>19476</object-id>
+      <state-number>31605</state-number>
     </table>
-    <table id="14" parent="5" name="role">
-      <object-id>398118</object-id>
-      <state-number>4435512</state-number>
+    <table id="16" parent="7" name="role">
+      <object-id>19567</object-id>
+      <state-number>31676</state-number>
     </table>
-    <table id="15" parent="5" name="session">
-      <object-id>398124</object-id>
-      <state-number>4435506</state-number>
+    <table id="17" parent="7" name="session">
+      <object-id>19573</object-id>
+      <state-number>31670</state-number>
     </table>
-    <table id="16" parent="5" name="users">
-      <object-id>398134</object-id>
-      <state-number>4435510</state-number>
+    <table id="18" parent="7" name="users">
+      <object-id>19583</object-id>
+      <state-number>31674</state-number>
     </table>
-    <table id="17" parent="5" name="users_role">
-      <object-id>398144</object-id>
-      <state-number>4435512</state-number>
+    <table id="19" parent="7" name="users_role">
+      <object-id>19593</object-id>
+      <state-number>31676</state-number>
     </table>
-    <column id="18" parent="11" name="id">
-      <state-number>4435503</state-number>
+    <column id="20" parent="13" name="id">
+      <state-number>31667</state-number>
       <mandatory>1</mandatory>
       <data-type>uuid|0</data-type>
     </column>
-    <column id="19" parent="11" name="when_created">
-      <state-number>4435503</state-number>
+    <column id="21" parent="13" name="when_created">
+      <state-number>31667</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="20" parent="11" name="when_updated">
-      <state-number>4435503</state-number>
+    <column id="22" parent="13" name="when_updated">
+      <state-number>31667</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="21" parent="11" name="when_deleted">
-      <state-number>4435503</state-number>
+    <column id="23" parent="13" name="when_deleted">
+      <state-number>31667</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="22" parent="11" name="status">
-      <state-number>4435503</state-number>
+    <column id="24" parent="13" name="status">
+      <state-number>31667</state-number>
       <data-type>varchar(8)|0</data-type>
     </column>
-    <column id="23" parent="11" name="blocking_reason">
-      <state-number>4435503</state-number>
+    <column id="25" parent="13" name="blocking_reason">
+      <state-number>31667</state-number>
       <data-type>varchar(1000)|0</data-type>
     </column>
-    <column id="24" parent="11" name="type">
-      <state-number>4435503</state-number>
+    <column id="26" parent="13" name="type">
+      <state-number>31667</state-number>
       <data-type>varchar(6)|0</data-type>
     </column>
-    <column id="25" parent="11" name="name">
-      <state-number>4435503</state-number>
+    <column id="27" parent="13" name="name">
+      <state-number>31667</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="26" parent="11" name="api_key">
-      <state-number>4435503</state-number>
+    <column id="28" parent="13" name="api_key">
+      <state-number>31667</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <index id="27" parent="11" name="pk_app">
-      <object-id>398107</object-id>
+    <index id="29" parent="13" name="pk_app">
+      <object-id>19556</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <key id="28" parent="11" name="pk_app">
-      <object-id>398108</object-id>
+    <key id="30" parent="13" name="pk_app">
+      <object-id>19557</object-id>
       <columns>id</columns>
       <underlying-index>pk_app</underlying-index>
       <primary>1</primary>
     </key>
-    <check id="29" parent="11" name="ck_app_status">
-      <object-id>398102</object-id>
+    <check id="31" parent="13" name="ck_app_status">
+      <object-id>19551</object-id>
       <columns>status</columns>
       <predicate>(status)::text = ANY ((ARRAY[&apos;APPROVED&apos;::character varying, &apos;BLOCKED&apos;::character varying, &apos;PENDING&apos;::character varying, &apos;DELETED&apos;::character varying])::text[])</predicate>
     </check>
-    <check id="30" parent="11" name="ck_app_type">
-      <object-id>398103</object-id>
+    <check id="32" parent="13" name="ck_app_type">
+      <object-id>19552</object-id>
       <columns>type</columns>
       <predicate>(type)::text = ANY ((ARRAY[&apos;WEB&apos;::character varying, &apos;MOBILE&apos;::character varying])::text[])</predicate>
     </check>
-    <column id="31" parent="12" name="id">
-      <state-number>4435504</state-number>
+    <column id="33" parent="14" name="id">
+      <state-number>31668</state-number>
       <mandatory>1</mandatory>
       <data-type>uuid|0</data-type>
     </column>
-    <column id="32" parent="12" name="when_created">
-      <state-number>4435504</state-number>
+    <column id="34" parent="14" name="when_created">
+      <state-number>31668</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="33" parent="12" name="when_updated">
-      <state-number>4435504</state-number>
+    <column id="35" parent="14" name="when_updated">
+      <state-number>31668</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="34" parent="12" name="when_deleted">
-      <state-number>4435504</state-number>
+    <column id="36" parent="14" name="when_deleted">
+      <state-number>31668</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="35" parent="12" name="status">
-      <state-number>4435504</state-number>
+    <column id="37" parent="14" name="status">
+      <state-number>31668</state-number>
       <data-type>varchar(8)|0</data-type>
     </column>
-    <column id="36" parent="12" name="blocking_reason">
-      <state-number>4435504</state-number>
+    <column id="38" parent="14" name="blocking_reason">
+      <state-number>31668</state-number>
       <data-type>varchar(1000)|0</data-type>
     </column>
-    <column id="37" parent="12" name="title">
-      <state-number>4435504</state-number>
+    <column id="39" parent="14" name="title">
+      <state-number>31668</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="38" parent="12" name="short_description">
-      <state-number>4435504</state-number>
+    <column id="40" parent="14" name="short_description">
+      <state-number>31668</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="39" parent="12" name="description">
-      <state-number>4435504</state-number>
-      <data-type>varchar(255)|0</data-type>
+    <column id="41" parent="14" name="description">
+      <state-number>31668</state-number>
+      <data-type>varchar(4096)|0</data-type>
     </column>
-    <index id="40" parent="12" name="pk_news">
-      <object-id>398116</object-id>
+    <index id="42" parent="14" name="pk_news">
+      <object-id>19565</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <index id="41" parent="12" name="ix_news_title">
-      <object-id>398149</object-id>
+    <index id="43" parent="14" name="ix_news_title">
+      <object-id>19598</object-id>
       <columns>title</columns>
       <desc-columns></desc-columns>
     </index>
-    <key id="42" parent="12" name="pk_news">
-      <object-id>398117</object-id>
+    <key id="44" parent="14" name="pk_news">
+      <object-id>19566</object-id>
       <columns>id</columns>
       <underlying-index>pk_news</underlying-index>
       <primary>1</primary>
     </key>
-    <check id="43" parent="12" name="ck_news_status">
-      <object-id>398112</object-id>
+    <check id="45" parent="14" name="ck_news_status">
+      <object-id>19561</object-id>
       <columns>status</columns>
       <predicate>(status)::text = ANY ((ARRAY[&apos;APPROVED&apos;::character varying, &apos;BLOCKED&apos;::character varying, &apos;PENDING&apos;::character varying, &apos;DELETED&apos;::character varying])::text[])</predicate>
     </check>
-    <column id="44" parent="13" name="id">
-      <state-number>4435501</state-number>
+    <column id="46" parent="15" name="id">
+      <state-number>31605</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="45" parent="13" name="hash">
-      <state-number>4435501</state-number>
+    <column id="47" parent="15" name="hash">
+      <state-number>31605</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="46" parent="13" name="applied_at">
-      <state-number>4435501</state-number>
+    <column id="48" parent="15" name="applied_at">
+      <state-number>31605</state-number>
       <mandatory>1</mandatory>
       <data-type>timestamp|0</data-type>
     </column>
-    <column id="47" parent="13" name="apply_script">
-      <state-number>4435501</state-number>
+    <column id="49" parent="15" name="apply_script">
+      <state-number>31605</state-number>
       <data-type>text|0</data-type>
     </column>
-    <column id="48" parent="13" name="revert_script">
-      <state-number>4435501</state-number>
+    <column id="50" parent="15" name="revert_script">
+      <state-number>31605</state-number>
       <data-type>text|0</data-type>
     </column>
-    <column id="49" parent="13" name="state">
-      <state-number>4435501</state-number>
+    <column id="51" parent="15" name="state">
+      <state-number>31605</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="50" parent="13" name="last_problem">
-      <state-number>4435501</state-number>
+    <column id="52" parent="15" name="last_problem">
+      <state-number>31605</state-number>
       <data-type>text|0</data-type>
     </column>
-    <index id="51" parent="13" name="play_evolutions_pkey">
-      <object-id>398097</object-id>
+    <index id="53" parent="15" name="play_evolutions_pkey">
+      <object-id>19482</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <key id="52" parent="13" name="play_evolutions_pkey">
-      <object-id>398098</object-id>
+    <key id="54" parent="15" name="play_evolutions_pkey">
+      <object-id>19483</object-id>
       <columns>id</columns>
       <underlying-index>play_evolutions_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <column id="53" parent="14" name="role">
-      <state-number>4435505</state-number>
+    <column id="55" parent="16" name="role">
+      <state-number>31669</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(7)|0</data-type>
     </column>
-    <index id="54" parent="14" name="pk_role">
-      <object-id>398122</object-id>
+    <index id="56" parent="16" name="pk_role">
+      <object-id>19571</object-id>
       <columns>role</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <key id="55" parent="14" name="pk_role">
-      <object-id>398123</object-id>
+    <key id="57" parent="16" name="pk_role">
+      <object-id>19572</object-id>
       <columns>role</columns>
       <underlying-index>pk_role</underlying-index>
       <primary>1</primary>
     </key>
-    <check id="56" parent="14" name="ck_role_role">
-      <object-id>398121</object-id>
+    <check id="58" parent="16" name="ck_role_role">
+      <object-id>19570</object-id>
       <columns>role</columns>
-      <predicate>(role)::text = ANY ((ARRAY[&apos;edit&apos;::character varying, &apos;add&apos;::character varying, &apos;deleted&apos;::character varying, &apos;view&apos;::character varying])::text[])</predicate>
+      <predicate>(role)::text = ANY ((ARRAY[&apos;edit&apos;::character varying, &apos;create&apos;::character varying, &apos;deleted&apos;::character varying, &apos;view&apos;::character varying])::text[])</predicate>
     </check>
-    <column id="57" parent="15" name="id">
-      <state-number>4435506</state-number>
+    <column id="59" parent="17" name="id">
+      <state-number>31670</state-number>
       <mandatory>1</mandatory>
       <data-type>uuid|0</data-type>
     </column>
-    <column id="58" parent="15" name="when_created">
-      <state-number>4435506</state-number>
+    <column id="60" parent="17" name="when_created">
+      <state-number>31670</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="59" parent="15" name="when_updated">
-      <state-number>4435506</state-number>
+    <column id="61" parent="17" name="when_updated">
+      <state-number>31670</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="60" parent="15" name="when_deleted">
-      <state-number>4435506</state-number>
+    <column id="62" parent="17" name="when_deleted">
+      <state-number>31670</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="61" parent="15" name="user_id">
-      <state-number>4435506</state-number>
+    <column id="63" parent="17" name="user_id">
+      <state-number>31670</state-number>
       <data-type>uuid|0</data-type>
     </column>
-    <column id="62" parent="15" name="token">
-      <state-number>4435506</state-number>
+    <column id="64" parent="17" name="token">
+      <state-number>31670</state-number>
       <data-type>varchar(1000)|0</data-type>
     </column>
-    <index id="63" parent="15" name="pk_session">
-      <object-id>398130</object-id>
+    <index id="65" parent="17" name="pk_session">
+      <object-id>19579</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <index id="64" parent="15" name="uq_session_token">
-      <object-id>398132</object-id>
+    <index id="66" parent="17" name="uq_session_token">
+      <object-id>19581</object-id>
       <columns>token</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <key id="65" parent="15" name="pk_session">
-      <object-id>398131</object-id>
+    <key id="67" parent="17" name="pk_session">
+      <object-id>19580</object-id>
       <columns>id</columns>
       <underlying-index>pk_session</underlying-index>
       <primary>1</primary>
     </key>
-    <key id="66" parent="15" name="uq_session_token">
-      <object-id>398133</object-id>
+    <key id="68" parent="17" name="uq_session_token">
+      <object-id>19582</object-id>
       <columns>token</columns>
       <underlying-index>uq_session_token</underlying-index>
     </key>
-    <column id="67" parent="16" name="id">
-      <state-number>4435507</state-number>
+    <column id="69" parent="18" name="id">
+      <state-number>31671</state-number>
       <mandatory>1</mandatory>
       <data-type>uuid|0</data-type>
     </column>
-    <column id="68" parent="16" name="when_created">
-      <state-number>4435507</state-number>
+    <column id="70" parent="18" name="when_created">
+      <state-number>31671</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="69" parent="16" name="when_updated">
-      <state-number>4435507</state-number>
+    <column id="71" parent="18" name="when_updated">
+      <state-number>31671</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="70" parent="16" name="when_deleted">
-      <state-number>4435507</state-number>
+    <column id="72" parent="18" name="when_deleted">
+      <state-number>31671</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="71" parent="16" name="status">
-      <state-number>4435507</state-number>
+    <column id="73" parent="18" name="status">
+      <state-number>31671</state-number>
       <data-type>varchar(8)|0</data-type>
     </column>
-    <column id="72" parent="16" name="blocking_reason">
-      <state-number>4435507</state-number>
+    <column id="74" parent="18" name="blocking_reason">
+      <state-number>31671</state-number>
       <data-type>varchar(1000)|0</data-type>
     </column>
-    <column id="73" parent="16" name="login">
-      <state-number>4435507</state-number>
+    <column id="75" parent="18" name="login">
+      <state-number>31671</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="74" parent="16" name="password">
-      <state-number>4435507</state-number>
+    <column id="76" parent="18" name="password">
+      <state-number>31671</state-number>
       <data-type>bytea|0</data-type>
     </column>
-    <column id="75" parent="16" name="type">
-      <state-number>4435507</state-number>
+    <column id="77" parent="18" name="type">
+      <state-number>31671</state-number>
       <data-type>varchar(12)|0</data-type>
     </column>
-    <column id="76" parent="16" name="app_id">
-      <state-number>4435507</state-number>
+    <column id="78" parent="18" name="app_id">
+      <state-number>31671</state-number>
       <data-type>uuid|0</data-type>
     </column>
-    <column id="77" parent="16" name="email">
-      <state-number>4435507</state-number>
+    <column id="79" parent="18" name="email">
+      <state-number>31671</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="78" parent="16" name="name">
-      <state-number>4435507</state-number>
+    <column id="80" parent="18" name="name">
+      <state-number>31671</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="79" parent="16" name="language">
-      <state-number>4435507</state-number>
+    <column id="81" parent="18" name="language">
+      <state-number>31671</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <index id="80" parent="16" name="pk_users">
-      <object-id>398142</object-id>
+    <index id="82" parent="18" name="pk_users">
+      <object-id>19591</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <key id="81" parent="16" name="pk_users">
-      <object-id>398143</object-id>
+    <key id="83" parent="18" name="pk_users">
+      <object-id>19592</object-id>
       <columns>id</columns>
       <underlying-index>pk_users</underlying-index>
       <primary>1</primary>
     </key>
-    <check id="82" parent="16" name="ck_users_status">
-      <object-id>398137</object-id>
+    <check id="84" parent="18" name="ck_users_status">
+      <object-id>19586</object-id>
       <columns>status</columns>
       <predicate>(status)::text = ANY ((ARRAY[&apos;APPROVED&apos;::character varying, &apos;BLOCKED&apos;::character varying, &apos;PENDING&apos;::character varying, &apos;DELETED&apos;::character varying])::text[])</predicate>
     </check>
-    <check id="83" parent="16" name="ck_users_type">
-      <object-id>398138</object-id>
+    <check id="85" parent="18" name="ck_users_type">
+      <object-id>19587</object-id>
       <columns>type</columns>
       <predicate>(type)::text = ANY ((ARRAY[&apos;WEB_CLIENT&apos;::character varying, &apos;APPLIACATION&apos;::character varying])::text[])</predicate>
     </check>
-    <column id="84" parent="17" name="users_id">
-      <state-number>4435508</state-number>
+    <column id="86" parent="19" name="users_id">
+      <state-number>31672</state-number>
       <mandatory>1</mandatory>
       <data-type>uuid|0</data-type>
     </column>
-    <column id="85" parent="17" name="role_role">
-      <state-number>4435508</state-number>
+    <column id="87" parent="19" name="role_role">
+      <state-number>31672</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(7)|0</data-type>
     </column>
-    <index id="86" parent="17" name="pk_users_role">
-      <object-id>398147</object-id>
+    <index id="88" parent="19" name="pk_users_role">
+      <object-id>19596</object-id>
       <columns>users_id
 role_role</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <index id="87" parent="17" name="ix_users_role_users">
-      <object-id>398155</object-id>
+    <index id="89" parent="19" name="ix_users_role_users">
+      <object-id>19604</object-id>
       <columns>users_id</columns>
       <desc-columns></desc-columns>
     </index>
-    <index id="88" parent="17" name="ix_users_role_role">
-      <object-id>398161</object-id>
+    <index id="90" parent="19" name="ix_users_role_role">
+      <object-id>19610</object-id>
       <columns>role_role</columns>
       <desc-columns></desc-columns>
     </index>
-    <key id="89" parent="17" name="pk_users_role">
-      <object-id>398148</object-id>
+    <key id="91" parent="19" name="pk_users_role">
+      <object-id>19597</object-id>
       <columns>users_id
 role_role</columns>
       <underlying-index>pk_users_role</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="90" parent="17" name="fk_users_role_users">
-      <object-id>398150</object-id>
+    <foreign-key id="92" parent="19" name="fk_users_role_users">
+      <object-id>19599</object-id>
       <columns>users_id</columns>
       <ref-key>~.users.pk_users</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="91" parent="17" name="fk_users_role_role">
-      <object-id>398156</object-id>
+    <foreign-key id="93" parent="19" name="fk_users_role_role">
+      <object-id>19605</object-id>
       <columns>role_role</columns>
       <ref-key>~.role.pk_role</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>

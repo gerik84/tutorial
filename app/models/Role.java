@@ -14,7 +14,7 @@ import java.util.List;
 public class Role extends Model {
 
     public enum ROLE {
-        edit, add, deleted, view
+        edit, create, deleted, view
     }
 
     public ROLE getRole() {

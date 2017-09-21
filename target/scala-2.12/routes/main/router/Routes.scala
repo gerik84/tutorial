@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/home/pavel/projects/java/backend/tutorial/conf/routes
-// @DATE:Thu Sep 21 16:59:40 SAMT 2017
+// @SOURCE:/home/redline/project/java/tutorial/conf/routes
+// @DATE:Thu Sep 21 21:04:36 SAMT 2017
 
 package router
 
@@ -20,9 +20,9 @@ class Routes(
   // @LINE:10
   Assets_2: controllers.Assets,
   // @LINE:13
-  NewsController_3: controllers.NewsController,
-  // @LINE:14
   ApiController_0: controllers.ApiController,
+  // @LINE:16
+  NewsController_3: controllers.NewsController,
   val prefix: String
 ) extends GeneratedRouter {
 
@@ -33,14 +33,14 @@ class Routes(
     // @LINE:10
     Assets_2: controllers.Assets,
     // @LINE:13
-    NewsController_3: controllers.NewsController,
-    // @LINE:14
-    ApiController_0: controllers.ApiController
-  ) = this(errorHandler, HomeController_1, Assets_2, NewsController_3, ApiController_0, "/")
+    ApiController_0: controllers.ApiController,
+    // @LINE:16
+    NewsController_3: controllers.NewsController
+  ) = this(errorHandler, HomeController_1, Assets_2, ApiController_0, NewsController_3, "/")
 
   def withPrefix(prefix: String): Routes = {
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, HomeController_1, Assets_2, NewsController_3, ApiController_0, prefix)
+    new Routes(errorHandler, HomeController_1, Assets_2, ApiController_0, NewsController_3, prefix)
   }
 
   private[this] val defaultPrefix: String = {
@@ -51,8 +51,11 @@ class Routes(
     ("""GET""", this.prefix, """controllers.HomeController.index"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """test""", """controllers.HomeController.test"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """news""", """controllers.NewsController.getNews"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """signup""", """controllers.ApiController.signup"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """news""", """controllers.NewsController.getNews"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """news""", """controllers.NewsController.createNews"""),
+    ("""PATCH""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """news/""" + "$" + """ID<[^/]+>""", """controllers.NewsController.modifyNews(ID:java.util.UUID)"""),
+    ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """news/""" + "$" + """ID<[^/]+>""", """controllers.NewsController.deleteNews(ID:java.util.UUID)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -115,28 +118,10 @@ class Routes(
   )
 
   // @LINE:13
-  private[this] lazy val controllers_NewsController_getNews3_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("news")))
-  )
-  private[this] lazy val controllers_NewsController_getNews3_invoker = createInvoker(
-    NewsController_3.getNews,
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.NewsController",
-      "getNews",
-      Nil,
-      "GET",
-      this.prefix + """news""",
-      """""",
-      Seq()
-    )
-  )
-
-  // @LINE:14
-  private[this] lazy val controllers_ApiController_signup4_route = Route("POST",
+  private[this] lazy val controllers_ApiController_signup3_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("signup")))
   )
-  private[this] lazy val controllers_ApiController_signup4_invoker = createInvoker(
+  private[this] lazy val controllers_ApiController_signup3_invoker = createInvoker(
     ApiController_0.signup,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -145,6 +130,78 @@ class Routes(
       Nil,
       "POST",
       this.prefix + """signup""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:16
+  private[this] lazy val controllers_NewsController_getNews4_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("news")))
+  )
+  private[this] lazy val controllers_NewsController_getNews4_invoker = createInvoker(
+    NewsController_3.getNews,
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.NewsController",
+      "getNews",
+      Nil,
+      "GET",
+      this.prefix + """news""",
+      """NEWS""",
+      Seq()
+    )
+  )
+
+  // @LINE:17
+  private[this] lazy val controllers_NewsController_createNews5_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("news")))
+  )
+  private[this] lazy val controllers_NewsController_createNews5_invoker = createInvoker(
+    NewsController_3.createNews,
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.NewsController",
+      "createNews",
+      Nil,
+      "POST",
+      this.prefix + """news""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:18
+  private[this] lazy val controllers_NewsController_modifyNews6_route = Route("PATCH",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("news/"), DynamicPart("ID", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_NewsController_modifyNews6_invoker = createInvoker(
+    NewsController_3.modifyNews(fakeValue[java.util.UUID]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.NewsController",
+      "modifyNews",
+      Seq(classOf[java.util.UUID]),
+      "PATCH",
+      this.prefix + """news/""" + "$" + """ID<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:19
+  private[this] lazy val controllers_NewsController_deleteNews7_route = Route("DELETE",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("news/"), DynamicPart("ID", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_NewsController_deleteNews7_invoker = createInvoker(
+    NewsController_3.deleteNews(fakeValue[java.util.UUID]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.NewsController",
+      "deleteNews",
+      Seq(classOf[java.util.UUID]),
+      "DELETE",
+      this.prefix + """news/""" + "$" + """ID<[^/]+>""",
       """""",
       Seq()
     )
@@ -172,15 +229,33 @@ class Routes(
       }
   
     // @LINE:13
-    case controllers_NewsController_getNews3_route(params@_) =>
+    case controllers_ApiController_signup3_route(params@_) =>
       call { 
-        controllers_NewsController_getNews3_invoker.call(NewsController_3.getNews)
+        controllers_ApiController_signup3_invoker.call(ApiController_0.signup)
       }
   
-    // @LINE:14
-    case controllers_ApiController_signup4_route(params@_) =>
+    // @LINE:16
+    case controllers_NewsController_getNews4_route(params@_) =>
       call { 
-        controllers_ApiController_signup4_invoker.call(ApiController_0.signup)
+        controllers_NewsController_getNews4_invoker.call(NewsController_3.getNews)
+      }
+  
+    // @LINE:17
+    case controllers_NewsController_createNews5_route(params@_) =>
+      call { 
+        controllers_NewsController_createNews5_invoker.call(NewsController_3.createNews)
+      }
+  
+    // @LINE:18
+    case controllers_NewsController_modifyNews6_route(params@_) =>
+      call(params.fromPath[java.util.UUID]("ID", None)) { (ID) =>
+        controllers_NewsController_modifyNews6_invoker.call(NewsController_3.modifyNews(ID))
+      }
+  
+    // @LINE:19
+    case controllers_NewsController_deleteNews7_route(params@_) =>
+      call(params.fromPath[java.util.UUID]("ID", None)) { (ID) =>
+        controllers_NewsController_deleteNews7_invoker.call(NewsController_3.deleteNews(ID))
       }
   }
 }

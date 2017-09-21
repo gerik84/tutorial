@@ -51,8 +51,8 @@ Seq[Any](format.raw/*1.4*/("""
 
               /*
                   -- GENERATED --
-                  DATE: Thu Sep 21 13:25:28 SAMT 2017
-                  SOURCE: /home/pavel/projects/java/backend/tutorial/app/views/index.scala.html
+                  DATE: Thu Sep 21 18:46:27 SAMT 2017
+                  SOURCE: /home/redline/project/java/tutorial/app/views/index.scala.html
                   HASH: 101fa511ddebe89cb9bf324b96e228b7b59b8d04
                   MATRIX: 941->1|1037->3|1065->6|1096->29|1135->31|1164->34|1220->61
                   LINES: 28->1|33->1|35->3|35->3|35->3|36->4|37->5

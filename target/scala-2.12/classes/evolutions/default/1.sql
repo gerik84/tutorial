@@ -27,14 +27,14 @@ create table news (
   blocking_reason               varchar(1000),
   title                         varchar(255),
   short_description             varchar(255),
-  description                   varchar(255),
+  description                   varchar(4096),
   constraint ck_news_status check ( status in ('APPROVED','BLOCKED','PENDING','DELETED')),
   constraint pk_news primary key (id)
 );
 
 create table role (
   role                          varchar(7) not null,
-  constraint ck_role_role check ( role in ('edit','add','deleted','view')),
+  constraint ck_role_role check ( role in ('edit','create','deleted','view')),
   constraint pk_role primary key (role)
 );
 
