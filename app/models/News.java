@@ -2,8 +2,8 @@ package models;
 
 import io.ebean.annotation.Index;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by pavel on 21.09.17.
@@ -18,6 +18,9 @@ public class News extends ModerateModel {
 
     @Column(length = 4096)
     private String description;
+
+    @ManyToMany
+    private List<Media> images;
 
     public String getTitle() {
         return title;
@@ -41,5 +44,13 @@ public class News extends ModerateModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Media> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Media> images) {
+        this.images = images;
     }
 }

@@ -13,10 +13,6 @@ import java.util.UUID;
 public class File extends BaseModel
 {
 
-    public enum TYPE {
-        image
-    }
-
     @Id
     private UUID id;
     private String type;

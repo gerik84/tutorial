@@ -5,6 +5,7 @@ import actors.NewImageEvent;
 import com.google.common.io.Files;
 import com.typesafe.config.Config;
 import models.File;
+import models.Media;
 import play.Configuration;
 import play.Logger;
 import play.mvc.Http;
@@ -49,8 +50,7 @@ public class DBStorageSystem extends FileStorageSystem {
 
         file.save();
         String url = file.getId().toString();//"/file/"+file.getId();//configuration.getString("file.download.url","/download/")+file.getId();//Routes routes.Application.download(file.getId().toString()).absoluteURL(request);
-        boolean isPdf = type.equals(application_pdf_type);
-        requestThumbnail(new NewImageEvent(url, file.getId().toString()));
+        requestThumbnail(new NewImageEvent(url, file.getId().toString(), Media.MediaType.Image));
         return url;
     }
 

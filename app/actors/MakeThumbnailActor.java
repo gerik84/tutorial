@@ -48,7 +48,7 @@ public class MakeThumbnailActor extends UntypedActor
     public void onReceive(Object message) throws Exception {
         if (message instanceof NewImageEvent) {
             NewImageEvent event = (NewImageEvent) message;
-            IThumbnailer thumbnailer = ThumbnailerFactory.makeThumbnailer(File.TYPE.image);
+            IThumbnailer thumbnailer = ThumbnailerFactory.makeThumbnailer(event.type);
             if (thumbnailer != null) {
                 long start = System.currentTimeMillis();
                 if (thumbnailer.makeThumbnail(storageSystem, event.uploadedFile)) {
@@ -69,7 +69,7 @@ public class MakeThumbnailActor extends UntypedActor
                 }
 
             } else {
-                Logger.error("Can't make thumbnailer for type " + File.TYPE.image);
+                Logger.error("Can't make thumbnailer for type " + event.type);
             }
             return;
         }

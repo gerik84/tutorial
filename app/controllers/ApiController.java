@@ -4,10 +4,7 @@ import akka.actor.ActorSystem;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.inject.Inject;
-import models.App;
-import models.Role;
-import models.Session;
-import models.User;
+import models.*;
 import play.mvc.Result;
 import scala.concurrent.ExecutionContextExecutor;
 import utils.Auth;
@@ -43,9 +40,12 @@ public class ApiController extends BaseController {
         if (id == null) {
             return internalServerError();
         }
-        ObjectNode result = newObject();
-        result.put("id", id);
-        return ok(result);
+        Media media = new Media();
+        media.setThumb("file/" + id + "_thumb");
+        media.setUrl("file/" + id);
+        media.setType(Media.MediaType.Image);
+        media.save();
+        return makeResult(media, user);
     }
 
     public Result download(String id) {

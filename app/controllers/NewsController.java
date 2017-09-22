@@ -33,9 +33,9 @@ public class NewsController extends BaseController {
 
     public Result createNews() {
         User user = getUser(false);
-        if (!Auth.isAllowedForUser(user, Auth.s_moderator)) {
-            return forbidden();
-        }
+//        if (!Auth.isAllowedForUser(user, Auth.s_moderator)) {
+//            return forbidden();
+//        }
 
         return createUnsafe(News.class, user);
     }
