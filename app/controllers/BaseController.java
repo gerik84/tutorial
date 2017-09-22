@@ -67,7 +67,7 @@ abstract class BaseController extends Controller {
     }
 
 
-    <T extends BaseModel> Result createUnsafe(Class<T> model, @Nullable User user) {
+    <T extends UUIDBaseModel> Result createUnsafe(Class<T> model, @Nullable User user) {
         JsonNode json = request().body().asJson();
         if (json == null) {
             return badRequest("Expecting Json data");
@@ -76,7 +76,7 @@ abstract class BaseController extends Controller {
         return makeResult(np, user);
     }
 
-    private <T extends BaseModel> T createUnsafeFromJson(JsonNode json, Class<T> model, @Nullable User user) {
+    private <T extends UUIDBaseModel> T createUnsafeFromJson(JsonNode json, Class<T> model, @Nullable User user) {
         try {
 //            logAction("create", user, model.getClass().getName(), json);
             ObjectMapper mapper = new ObjectMapper();
@@ -113,7 +113,7 @@ abstract class BaseController extends Controller {
         return  user == null;
     }
 
-    protected <T extends BaseModel> Result getListUnsafe(User user, Class<T> model, ModelLists.ICustomQuery q) {
+    protected <T extends UUIDBaseModel> Result getListUnsafe(User user, Class<T> model, ModelLists.ICustomQuery q) {
 
         if(request().getQueryString(ModelLists.countParam) != null) {
             int count = ModelLists.getListCountFromRequest(model, request(), q, isClient(user));
@@ -127,7 +127,7 @@ abstract class BaseController extends Controller {
         return res.withHeader(ModelLists.TOTAL_COUNT_HEADER, String.valueOf(list.getTotalCount()));
     }
 
-    protected <T extends BaseModel> Result getResultListUnsafe(User user, Class<T> model, List<T> list) {
+    protected <T extends UUIDBaseModel> Result getResultListUnsafe(User user, Class<T> model, List<T> list) {
         if(request().hasHeader(IF_MODIFIED_SINCE) && list.isEmpty()) {
             return status(NOT_MODIFIED);
         }
@@ -156,7 +156,7 @@ abstract class BaseController extends Controller {
         includeMethodsFrom.add(ModerateModel.class);
     }
 
-    protected <T extends BaseModel> Result modifyByUser(Class<T> model, UUID id, HashSet<Role.ROLE> allowedTypes) {
+    protected <T extends UUIDBaseModel> Result modifyByUser(Class<T> model, UUID id, HashSet<Role.ROLE> allowedTypes) {
         User user = getUser();
         if(user == null) {
             return forbidden();
@@ -171,7 +171,7 @@ abstract class BaseController extends Controller {
         return modifyUnsafe(em, user);
     }
 
-    private <T extends BaseModel> Result modifyUnsafe(T em, @Nullable User user) {
+    private <T extends UUIDBaseModel> Result modifyUnsafe(T em, @Nullable User user) {
         JsonNode json = request().body().asJson();
 
         if (json == null) {
@@ -222,7 +222,7 @@ abstract class BaseController extends Controller {
 
     }
 
-    protected <T extends BaseModel> Result deleteUnsafe(Class<T> model, User user, UUID id) {
+    protected <T extends UUIDBaseModel> Result deleteUnsafe(Class<T> model, User user, UUID id) {
         T em = T.getByID(model, id);
         if(em == null) {
             return notFound();

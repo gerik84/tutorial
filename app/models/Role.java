@@ -11,7 +11,7 @@ import java.util.List;
  * Created by pavel on 21.09.17.
  */
 @Entity
-public class Role extends Model {
+public class Role extends BaseModel {
 
     public enum ROLE {
         edit, create, deleted, view

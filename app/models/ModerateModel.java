@@ -11,7 +11,7 @@ import javax.persistence.MappedSuperclass;
  * Created by pavel on 21.09.17.
  */
 @MappedSuperclass
-abstract public class ModerateModel extends BaseModel {
+abstract public class ModerateModel extends UUIDBaseModel {
 
     public enum Status {
         APPROVED,

@@ -10,7 +10,7 @@ import java.util.UUID;
  * Created by pavel on 21.09.17.
  */
 @Entity
-public class Session extends BaseModel {
+public class Session extends UUIDBaseModel {
 
     private UUID user_id;
 

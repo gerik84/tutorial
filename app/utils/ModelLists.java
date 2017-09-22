@@ -3,6 +3,7 @@ package utils;
 import io.ebean.*;
 import models.BaseModel;
 import models.ModerateModel;
+import models.UUIDBaseModel;
 import org.joda.time.DateTime;
 import play.Logger;
 import play.mvc.Http;
@@ -290,7 +291,7 @@ public class ModelLists {
 
 
 
-    public static <T extends BaseModel> Long lastUpdate(Class<T> model) {
+    public static <T extends UUIDBaseModel> Long lastUpdate(Class<T> model) {
          T em = Ebean.find(model).select(updateField).setDisableLazyLoading(true).order(updateField+" desc").setMaxRows(1).findUnique();
          return em != null ? em.getWhenUpdated():null;
     }
