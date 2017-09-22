@@ -18,6 +18,15 @@ create table app (
   constraint pk_app primary key (id)
 );
 
+create table file (
+  id                            uuid not null,
+  type                          varchar(255),
+  length                        integer not null,
+  data                          bytea,
+  thumbnail                     bytea,
+  constraint pk_file primary key (id)
+);
+
 create table news (
   id                            uuid not null,
   when_created                  bigint,
@@ -91,6 +100,8 @@ alter table if exists users_role drop constraint if exists fk_users_role_role;
 drop index if exists ix_users_role_role;
 
 drop table if exists app cascade;
+
+drop table if exists file cascade;
 
 drop table if exists news cascade;
 

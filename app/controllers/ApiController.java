@@ -12,6 +12,7 @@ import play.mvc.Result;
 import scala.concurrent.ExecutionContextExecutor;
 import utils.Auth;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static play.libs.Json.newObject;
@@ -24,6 +25,34 @@ public class ApiController extends BaseController {
     @Inject
     public ApiController(ActorSystem actorSystem, ExecutionContextExecutor exec) {
         super(actorSystem, exec);
+    }
+
+    public Result upload() {
+        User user = getUser();
+        if(user == null) {
+            return unauthorized();
+        }
+
+        Optional<String> contentTypeHeader = request().getHeaders().get(CONTENT_TYPE);
+        String ctype = contentTypeHeader.isPresent() ? contentTypeHeader.get() : null;
+        if (ctype == null || !ctype.startsWith("image")) {
+            return badRequest("only images can be uploaded");
+        }
+
+        String id = fileStorageSystem.upload(ctype, request());
+        if (id == null) {
+            return internalServerError();
+        }
+        ObjectNode result = newObject();
+        result.put("id", id);
+        return ok(result);
+    }
+
+    public Result download(String id) {
+        if (id == null) {
+            return badRequest("bad id of file");
+        }
+        return fileStorageSystem.download(id, request(), response());
     }
 
     public Result signup() {

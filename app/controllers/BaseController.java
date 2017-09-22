@@ -6,6 +6,8 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import files.FileStorageSystem;
+import files.FileStorageType;
 import io.ebean.Ebean;
 import io.ebean.PagedList;
 import models.*;
@@ -34,13 +36,13 @@ abstract class BaseController extends Controller {
 
     protected final ActorSystem actorSystem;
     protected final ExecutionContextExecutor exec;
-//    protected final FileStorageSystem fileStorageSystem;
+    protected final FileStorageSystem fileStorageSystem;
 
     public BaseController(ActorSystem actorSystem, ExecutionContextExecutor exec) {
         this.actorSystem = actorSystem;
         this.exec = exec;
-//        this.fileStorageSystem = FileStorageType.DATABASE.initStorage();
-//        fileStorageSystem.setActorSystem(actorSystem);
+        this.fileStorageSystem = FileStorageType.DATABASE.initStorage();
+        fileStorageSystem.setActorSystem(actorSystem);
 //        eventSystem = new EventStreamSystem(actorSystem);
     }
 

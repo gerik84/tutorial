@@ -11,5 +11,6 @@ public class Const {
     public static final Locale defaultLocale = new Locale("ru");
     public static int defaultListResults = 500;
     public static boolean logging_changes = true;
+    public static int ThumbSize = 200;
 
 }
