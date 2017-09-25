@@ -78,7 +78,7 @@ abstract class BaseController extends Controller {
         return makeResult(np, user);
     }
 
-    private <T extends UUIDBaseModel> T createUnsafeFromJson(JsonNode json, Class<T> model, @Nullable User user) {
+    protected  <T extends UUIDBaseModel> T createUnsafeFromJson(JsonNode json, Class<T> model, @Nullable User user) {
         try {
 //            logAction("create", user, model.getClass().getName(), json);
             ObjectMapper mapper = new ObjectMapper();

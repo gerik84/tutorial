@@ -27,8 +27,10 @@ create table brand (
   blocking_reason               varchar(1000),
   name                          varchar(255),
   description                   varchar(255),
+  icon_id                       uuid,
   constraint ck_brand_status check ( status in ('APPROVED','BLOCKED','PENDING','DELETED')),
   constraint uq_brand_name unique (name),
+  constraint uq_brand_icon_id unique (icon_id),
   constraint pk_brand primary key (id)
 );
 
@@ -70,6 +72,7 @@ create table goods_tree (
   when_created                  bigint,
   when_updated                  bigint,
   when_deleted                  bigint,
+  parent_id                     uuid,
   children_id                   uuid,
   constraint pk_goods_tree primary key (id)
 );
@@ -180,6 +183,8 @@ create table users_role (
 );
 
 create index ix_news_title on news (title);
+alter table brand add constraint fk_brand_icon_id foreign key (icon_id) references media (id) on delete restrict on update restrict;
+
 alter table goods add constraint fk_goods_cover_id foreign key (cover_id) references media (id) on delete restrict on update restrict;
 
 alter table goods add constraint fk_goods_brand_id foreign key (brand_id) references brand (id) on delete restrict on update restrict;
@@ -189,6 +194,9 @@ create index ix_goods_media_goods on goods_media (goods_id);
 
 alter table goods_media add constraint fk_goods_media_media foreign key (media_id) references media (id) on delete restrict on update restrict;
 create index ix_goods_media_media on goods_media (media_id);
+
+alter table goods_tree add constraint fk_goods_tree_parent_id foreign key (parent_id) references goods (id) on delete restrict on update restrict;
+create index ix_goods_tree_parent_id on goods_tree (parent_id);
 
 alter table goods_tree add constraint fk_goods_tree_children_id foreign key (children_id) references goods (id) on delete restrict on update restrict;
 create index ix_goods_tree_children_id on goods_tree (children_id);
@@ -214,6 +222,8 @@ create index ix_users_role_role on users_role (role_role);
 
 # --- !Downs
 
+alter table if exists brand drop constraint if exists fk_brand_icon_id;
+
 alter table if exists goods drop constraint if exists fk_goods_cover_id;
 
 alter table if exists goods drop constraint if exists fk_goods_brand_id;
@@ -223,6 +233,9 @@ drop index if exists ix_goods_media_goods;
 
 alter table if exists goods_media drop constraint if exists fk_goods_media_media;
 drop index if exists ix_goods_media_media;
+
+alter table if exists goods_tree drop constraint if exists fk_goods_tree_parent_id;
+drop index if exists ix_goods_tree_parent_id;
 
 alter table if exists goods_tree drop constraint if exists fk_goods_tree_children_id;
 drop index if exists ix_goods_tree_children_id;

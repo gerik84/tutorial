@@ -3,20 +3,27 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET          /                    controllers.HomeController.index
-GET          /test                controllers.HomeController.test
+GET           /                         controllers.HomeController.index
+GET           /test                     controllers.HomeController.test
 
 # Map static resources from the /public folder to the /assets URL path
-GET          /assets/*file        controllers.Assets.versioned(path="/public", file: Asset)
+GET           /assets/*file             controllers.Assets.versioned(path="/public", file: Asset)
 
-PUT           /file/upload                                         controllers.ApiController.upload
-GET           /file/:fileID                                        controllers.ApiController.download(fileID:String)
+PUT           /file/upload              controllers.ApiController.upload
+GET           /file/:fileID             controllers.ApiController.download(fileID:String)
 
 
-POST         /signup              controllers.ApiController.signup
+POST          /signup                   controllers.ApiController.signup
 
 #NEWS
-GET          /news                controllers.NewsController.getNews
-POST         /news                controllers.NewsController.createNews
-PATCH        /news/:newsID          controllers.NewsController.modifyNews(newsID:java.util.UUID)
-DELETE       /news/:newsID          controllers.NewsController.deleteNews(newsID:java.util.UUID)
+GET           /news                     controllers.NewsController.getNews
+POST          /news                     controllers.NewsController.createNews
+PATCH         /news/:newsID             controllers.NewsController.modifyNews(newsID:java.util.UUID)
+DELETE        /news/:newsID             controllers.NewsController.deleteNews(newsID:java.util.UUID)
+
+#CATALOG
+GET           /catalog                  controllers.GoodsController.getCatalog(parentID:java.util.UUID=null)
+GET           /catalog/:parentID        controllers.GoodsController.getCatalog(parentID:java.util.UUID)
+PUT           /goods                    controllers.GoodsController.createGoods(parentID:java.util.UUID=null)
+PUT           /goods/                    controllers.GoodsController.createGoods(parentID:java.util.UUID=null)
+PUT           /goods/:parentID          controllers.GoodsController.createGoods(parentID:java.util.UUID)

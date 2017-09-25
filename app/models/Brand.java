@@ -2,6 +2,8 @@ package models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 /**
  * Created by redline on 22.09.17.
@@ -14,6 +16,7 @@ public class Brand extends ModerateModel {
 
     private String description;
 
-    private File icon;
+    @OneToOne
+    private Media icon;
 
 }
