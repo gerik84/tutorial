@@ -10,8 +10,10 @@ import models.User;
 import play.mvc.Result;
 import scala.concurrent.ExecutionContextExecutor;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.BiConsumer;
 
 /**
  * Created by redline on 25.09.17.
@@ -55,6 +57,10 @@ public class GoodsController extends BaseController {
         User user = getUser();
         return getListUnsafe(user, Goods.class, q -> {
             if (parentID == null) {
+                stringMap.forEach((key, params) -> {
+                    q.in("properties.name", Arrays.asList(params));
+                    q.eq("properties.property.name", key);
+                });
                 q.in("id", Ebean.createQuery(GoodsTree.class).select("children.id").where().isNull("parent").query());
             } else {
                 q.in("id", Ebean.createQuery(GoodsTree.class).select("children.id").where().eq("parent.id", parentID).query());

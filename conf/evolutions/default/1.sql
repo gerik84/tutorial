@@ -67,6 +67,12 @@ create table goods_media (
   constraint pk_goods_media primary key (goods_id,media_id)
 );
 
+create table goods_property_item (
+  goods_id                      uuid not null,
+  property_item_id              uuid not null,
+  constraint pk_goods_property_item primary key (goods_id,property_item_id)
+);
+
 create table goods_tree (
   id                            uuid not null,
   when_created                  bigint,
@@ -115,7 +121,6 @@ create table news_media (
 
 create table property (
   id                            uuid not null,
-  goods_id                      uuid not null,
   when_created                  bigint,
   when_updated                  bigint,
   when_deleted                  bigint,
@@ -129,13 +134,13 @@ create table property (
 
 create table property_item (
   id                            uuid not null,
-  property_id                   uuid not null,
   when_created                  bigint,
   when_updated                  bigint,
   when_deleted                  bigint,
   status                        varchar(8),
   blocking_reason               varchar(1000),
   name                          varchar(255),
+  property_id                   uuid,
   constraint ck_property_item_status check ( status in ('APPROVED','BLOCKED','PENDING','DELETED')),
   constraint pk_property_item primary key (id)
 );
@@ -195,6 +200,12 @@ create index ix_goods_media_goods on goods_media (goods_id);
 alter table goods_media add constraint fk_goods_media_media foreign key (media_id) references media (id) on delete restrict on update restrict;
 create index ix_goods_media_media on goods_media (media_id);
 
+alter table goods_property_item add constraint fk_goods_property_item_goods foreign key (goods_id) references goods (id) on delete restrict on update restrict;
+create index ix_goods_property_item_goods on goods_property_item (goods_id);
+
+alter table goods_property_item add constraint fk_goods_property_item_property_item foreign key (property_item_id) references property_item (id) on delete restrict on update restrict;
+create index ix_goods_property_item_property_item on goods_property_item (property_item_id);
+
 alter table goods_tree add constraint fk_goods_tree_parent_id foreign key (parent_id) references goods (id) on delete restrict on update restrict;
 create index ix_goods_tree_parent_id on goods_tree (parent_id);
 
@@ -206,9 +217,6 @@ create index ix_news_media_news on news_media (news_id);
 
 alter table news_media add constraint fk_news_media_media foreign key (media_id) references media (id) on delete restrict on update restrict;
 create index ix_news_media_media on news_media (media_id);
-
-alter table property add constraint fk_property_goods_id foreign key (goods_id) references goods (id) on delete restrict on update restrict;
-create index ix_property_goods_id on property (goods_id);
 
 alter table property_item add constraint fk_property_item_property_id foreign key (property_id) references property (id) on delete restrict on update restrict;
 create index ix_property_item_property_id on property_item (property_id);
@@ -234,6 +242,12 @@ drop index if exists ix_goods_media_goods;
 alter table if exists goods_media drop constraint if exists fk_goods_media_media;
 drop index if exists ix_goods_media_media;
 
+alter table if exists goods_property_item drop constraint if exists fk_goods_property_item_goods;
+drop index if exists ix_goods_property_item_goods;
+
+alter table if exists goods_property_item drop constraint if exists fk_goods_property_item_property_item;
+drop index if exists ix_goods_property_item_property_item;
+
 alter table if exists goods_tree drop constraint if exists fk_goods_tree_parent_id;
 drop index if exists ix_goods_tree_parent_id;
 
@@ -245,9 +259,6 @@ drop index if exists ix_news_media_news;
 
 alter table if exists news_media drop constraint if exists fk_news_media_media;
 drop index if exists ix_news_media_media;
-
-alter table if exists property drop constraint if exists fk_property_goods_id;
-drop index if exists ix_property_goods_id;
 
 alter table if exists property_item drop constraint if exists fk_property_item_property_id;
 drop index if exists ix_property_item_property_id;
@@ -267,6 +278,8 @@ drop table if exists file cascade;
 drop table if exists goods cascade;
 
 drop table if exists goods_media cascade;
+
+drop table if exists goods_property_item cascade;
 
 drop table if exists goods_tree cascade;
 

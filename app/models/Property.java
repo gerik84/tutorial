@@ -1,5 +1,7 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -16,7 +18,7 @@ public class Property extends ModerateModel {
 
     private boolean multiChoose = false;
 
-    @OneToMany(cascade = PERSIST)
+    @OneToMany
     private List<PropertyItem> items;
 
 

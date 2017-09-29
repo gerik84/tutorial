@@ -34,8 +34,8 @@ public class Goods extends ModerateModel {
     @OneToOne
     private Brand brand;
 
-    @OneToMany(cascade = PERSIST)
-    private List<Property> properties;
+    @ManyToMany
+    private List<PropertyItem> properties;
 
     public String getName() {
         return name;
@@ -85,11 +85,11 @@ public class Goods extends ModerateModel {
         this.brand = brand;
     }
 
-    public List<Property> getProperties() {
+    public List<PropertyItem> getProperties() {
         return properties;
     }
 
-    public void setProperties(List<Property> properties) {
+    public void setProperties(List<PropertyItem> properties) {
         this.properties = properties;
     }
 }
