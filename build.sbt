@@ -18,3 +18,4 @@ libraryDependencies += guice
 
 libraryDependencies += "org.postgresql" % "postgresql" % "9.4-1201-jdbc41"
 libraryDependencies += "com.drewnoakes" % "metadata-extractor" % "2.10.1"
+libraryDependencies += "org.jsoup" % "jsoup" % "1.7.2"

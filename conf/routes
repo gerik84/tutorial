@@ -25,5 +25,8 @@ DELETE        /news/:newsID             controllers.NewsController.deleteNews(ne
 GET           /catalog                  controllers.GoodsController.getCatalog(parentID:java.util.UUID=null)
 GET           /catalog/:parentID        controllers.GoodsController.getCatalog(parentID:java.util.UUID)
 PUT           /goods                    controllers.GoodsController.createGoods(parentID:java.util.UUID=null)
-PUT           /goods/                    controllers.GoodsController.createGoods(parentID:java.util.UUID=null)
+PUT           /goods/                   controllers.GoodsController.createGoods(parentID:java.util.UUID=null)
 PUT           /goods/:parentID          controllers.GoodsController.createGoods(parentID:java.util.UUID)
+
+#PARSE
+GET           /parse/re-store           controllers.ParseController.parseReStore
