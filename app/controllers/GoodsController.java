@@ -53,8 +53,16 @@ public class GoodsController extends BaseController {
     }
 
     public Result getCatalog(UUID parentID) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Map<String, String[]> stringMap = request().queryString();
         User user = getUser();
+        if (user == null) {
+            return unauthorized();
+        }
         return getListUnsafe(user, Goods.class, q -> {
             if (parentID == null) {
                 stringMap.forEach((key, params) -> {

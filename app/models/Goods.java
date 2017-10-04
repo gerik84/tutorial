@@ -2,10 +2,7 @@ package models;
 
 import io.ebean.annotation.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.List;
 
 import static javax.persistence.CascadeType.ALL;
@@ -20,9 +17,9 @@ public class Goods extends ModerateModel {
     @NotNull
     private String name;
 
-    @NotNull
     private String model;
 
+    @Column(length = 4096 * 2)
     private String description;
 
     @OneToOne
