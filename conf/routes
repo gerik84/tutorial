@@ -28,5 +28,8 @@ PUT           /goods                    controllers.GoodsController.createGoods(
 PUT           /goods/                   controllers.GoodsController.createGoods(parentID:java.util.UUID=null)
 PUT           /goods/:parentID          controllers.GoodsController.createGoods(parentID:java.util.UUID)
 
+#CATALOG
+GET /catalog/null/property controllers.GoodsController.getProperty(parentID:java.util.UUID=null)
+GET /catalog/:parentID/property controllers.GoodsController.getProperty(parentID:java.util.UUID)
 #PARSE
 GET           /parse/re-store           controllers.ParseController.parseReStore
