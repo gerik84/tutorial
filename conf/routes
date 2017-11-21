@@ -27,9 +27,15 @@ GET           /catalog/:parentID        controllers.GoodsController.getCatalog(p
 PUT           /goods                    controllers.GoodsController.createGoods(parentID:java.util.UUID=null)
 PUT           /goods/                   controllers.GoodsController.createGoods(parentID:java.util.UUID=null)
 PUT           /goods/:parentID          controllers.GoodsController.createGoods(parentID:java.util.UUID)
+GET           /goods/:goodsID          controllers.GoodsController.getGoodsDetails(goodsID:java.util.UUID)
 
 #CATALOG
 GET /catalog/null/property controllers.GoodsController.getProperty(parentID:java.util.UUID=null)
 GET /catalog/:parentID/property controllers.GoodsController.getProperty(parentID:java.util.UUID)
+
+#ORDER
+GET /orders controllers.OrderController.getOrders
+GET /order/:orderID controllers.OrderController.getOrder(orderID:java.util.UUID)
+
 #PARSE
 GET           /parse/re-store           controllers.ParseController.parseReStore

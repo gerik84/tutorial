@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import files.FileStorageSystem;
 import files.FileStorageType;
 import io.ebean.Ebean;
+import io.ebean.ExpressionList;
 import io.ebean.PagedList;
+import io.ebean.Query;
 import models.*;
 import org.joda.time.DateTime;
 import play.Logger;
@@ -238,6 +240,14 @@ abstract class BaseController extends Controller {
         if(Const.logging_changes) {
             Logger.info(String.format("%s by %s: object (%s) got %s", action, Objects.toString(modifier), modelName, Objects.toString(json)));
         }
+    }
+
+    protected <T extends UUIDBaseModel> T getModelUnsafe(Class<T> model, UUID id, ModelLists.ICustomQuery customQuery) {
+        ExpressionList<T> q = Ebean.find(model).where().eq("id", id);
+        if (customQuery != null) {
+            customQuery.q(q);
+        }
+        return q.findUnique();
     }
 
 

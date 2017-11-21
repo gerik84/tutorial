@@ -24,6 +24,18 @@ public class GoodsController extends BaseController {
         super(actorSystem, exec);
     }
 
+    public Result getGoodsDetails(UUID goodsID) {
+        User user = getUser();
+//        if (user == null) {
+//            return unauthorized();
+//        }
+        Goods byID = Goods.getByID(Goods.class, goodsID);
+//        Goods order = getModelUnsafe(Goods.class, goodsID, q -> {
+//
+//        });
+        return makeResult(byID, user);
+    }
+
     public Result getProperty(UUID parentID) {
         List<Goods> allGoods;
         ExpressionList<Goods> where = Ebean.find(Goods.class)

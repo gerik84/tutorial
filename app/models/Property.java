@@ -19,6 +19,7 @@ public class Property extends ModerateModel {
     private boolean multiChoose = false;
 
     @OneToMany
+    @JsonIgnore
     private List<PropertyItem> items;
 
 

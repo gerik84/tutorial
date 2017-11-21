@@ -34,6 +34,16 @@ create table brand (
   constraint pk_brand primary key (id)
 );
 
+create table comment (
+  id                            uuid not null,
+  when_created                  bigint,
+  when_updated                  bigint,
+  when_deleted                  bigint,
+  user_id                       uuid,
+  message                       varchar(255),
+  constraint pk_comment primary key (id)
+);
+
 create table file (
   id                            uuid not null,
   type                          varchar(255),
@@ -83,6 +93,20 @@ create table goods_tree (
   constraint pk_goods_tree primary key (id)
 );
 
+create table log (
+  id                            uuid not null,
+  when_created                  bigint,
+  when_updated                  bigint,
+  when_deleted                  bigint,
+  user_id                       uuid,
+  subject_id                    uuid,
+  old_value                     varchar(255),
+  new_value                     varchar(255),
+  mode                          integer,
+  constraint ck_log_mode check ( mode in (0,1)),
+  constraint pk_log primary key (id)
+);
+
 create table media (
   id                            uuid not null,
   when_created                  bigint,
@@ -117,6 +141,50 @@ create table news_media (
   news_id                       uuid not null,
   media_id                      uuid not null,
   constraint pk_news_media primary key (news_id,media_id)
+);
+
+create table order (
+  id                            uuid not null,
+  when_created                  bigint,
+  when_updated                  bigint,
+  when_deleted                  bigint,
+  user_id                       uuid,
+  status                        varchar(9),
+  price                         bigint,
+  constraint ck_order_status check ( status in ('none','deleted','pending','done','decline','suspended','archive')),
+  constraint pk_order primary key (id)
+);
+
+create table order_comment (
+  order_id                      uuid not null,
+  comment_id                    uuid not null,
+  constraint pk_order_comment primary key (order_id,comment_id)
+);
+
+create table order_log (
+  order_id                      uuid not null,
+  log_id                        uuid not null,
+  constraint pk_order_log primary key (order_id,log_id)
+);
+
+create table order_item (
+  id                            uuid not null,
+  when_created                  bigint,
+  when_updated                  bigint,
+  when_deleted                  bigint,
+  goods_id                      uuid,
+  order_id                      uuid,
+  status                        varchar(9),
+  amount                        integer,
+  by_date                       bigint,
+  constraint ck_order_item_status check ( status in ('none','deleted','pending','done','decline','suspended','archive')),
+  constraint pk_order_item primary key (id)
+);
+
+create table order_item_comment (
+  order_item_id                 uuid not null,
+  comment_id                    uuid not null,
+  constraint pk_order_item_comment primary key (order_item_id,comment_id)
 );
 
 create table property (
@@ -190,6 +258,9 @@ create table users_role (
 create index ix_news_title on news (title);
 alter table brand add constraint fk_brand_icon_id foreign key (icon_id) references media (id) on delete restrict on update restrict;
 
+alter table comment add constraint fk_comment_user_id foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_comment_user_id on comment (user_id);
+
 alter table goods add constraint fk_goods_cover_id foreign key (cover_id) references media (id) on delete restrict on update restrict;
 
 alter table goods add constraint fk_goods_brand_id foreign key (brand_id) references brand (id) on delete restrict on update restrict;
@@ -212,11 +283,41 @@ create index ix_goods_tree_parent_id on goods_tree (parent_id);
 alter table goods_tree add constraint fk_goods_tree_children_id foreign key (children_id) references goods (id) on delete restrict on update restrict;
 create index ix_goods_tree_children_id on goods_tree (children_id);
 
+alter table log add constraint fk_log_user_id foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_log_user_id on log (user_id);
+
 alter table news_media add constraint fk_news_media_news foreign key (news_id) references news (id) on delete restrict on update restrict;
 create index ix_news_media_news on news_media (news_id);
 
 alter table news_media add constraint fk_news_media_media foreign key (media_id) references media (id) on delete restrict on update restrict;
 create index ix_news_media_media on news_media (media_id);
+
+alter table order add constraint fk_order_user_id foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_order_user_id on order (user_id);
+
+alter table order_comment add constraint fk_order_comment_order foreign key (order_id) references order (id) on delete restrict on update restrict;
+create index ix_order_comment_order on order_comment (order_id);
+
+alter table order_comment add constraint fk_order_comment_comment foreign key (comment_id) references comment (id) on delete restrict on update restrict;
+create index ix_order_comment_comment on order_comment (comment_id);
+
+alter table order_log add constraint fk_order_log_order foreign key (order_id) references order (id) on delete restrict on update restrict;
+create index ix_order_log_order on order_log (order_id);
+
+alter table order_log add constraint fk_order_log_log foreign key (log_id) references log (id) on delete restrict on update restrict;
+create index ix_order_log_log on order_log (log_id);
+
+alter table order_item add constraint fk_order_item_goods_id foreign key (goods_id) references goods (id) on delete restrict on update restrict;
+create index ix_order_item_goods_id on order_item (goods_id);
+
+alter table order_item add constraint fk_order_item_order_id foreign key (order_id) references order (id) on delete restrict on update restrict;
+create index ix_order_item_order_id on order_item (order_id);
+
+alter table order_item_comment add constraint fk_order_item_comment_order_item foreign key (order_item_id) references order_item (id) on delete restrict on update restrict;
+create index ix_order_item_comment_order_item on order_item_comment (order_item_id);
+
+alter table order_item_comment add constraint fk_order_item_comment_comment foreign key (comment_id) references comment (id) on delete restrict on update restrict;
+create index ix_order_item_comment_comment on order_item_comment (comment_id);
 
 alter table property_item add constraint fk_property_item_property_id foreign key (property_id) references property (id) on delete restrict on update restrict;
 create index ix_property_item_property_id on property_item (property_id);
@@ -231,6 +332,9 @@ create index ix_users_role_role on users_role (role_role);
 # --- !Downs
 
 alter table if exists brand drop constraint if exists fk_brand_icon_id;
+
+alter table if exists comment drop constraint if exists fk_comment_user_id;
+drop index if exists ix_comment_user_id;
 
 alter table if exists goods drop constraint if exists fk_goods_cover_id;
 
@@ -254,11 +358,41 @@ drop index if exists ix_goods_tree_parent_id;
 alter table if exists goods_tree drop constraint if exists fk_goods_tree_children_id;
 drop index if exists ix_goods_tree_children_id;
 
+alter table if exists log drop constraint if exists fk_log_user_id;
+drop index if exists ix_log_user_id;
+
 alter table if exists news_media drop constraint if exists fk_news_media_news;
 drop index if exists ix_news_media_news;
 
 alter table if exists news_media drop constraint if exists fk_news_media_media;
 drop index if exists ix_news_media_media;
+
+alter table if exists order drop constraint if exists fk_order_user_id;
+drop index if exists ix_order_user_id;
+
+alter table if exists order_comment drop constraint if exists fk_order_comment_order;
+drop index if exists ix_order_comment_order;
+
+alter table if exists order_comment drop constraint if exists fk_order_comment_comment;
+drop index if exists ix_order_comment_comment;
+
+alter table if exists order_log drop constraint if exists fk_order_log_order;
+drop index if exists ix_order_log_order;
+
+alter table if exists order_log drop constraint if exists fk_order_log_log;
+drop index if exists ix_order_log_log;
+
+alter table if exists order_item drop constraint if exists fk_order_item_goods_id;
+drop index if exists ix_order_item_goods_id;
+
+alter table if exists order_item drop constraint if exists fk_order_item_order_id;
+drop index if exists ix_order_item_order_id;
+
+alter table if exists order_item_comment drop constraint if exists fk_order_item_comment_order_item;
+drop index if exists ix_order_item_comment_order_item;
+
+alter table if exists order_item_comment drop constraint if exists fk_order_item_comment_comment;
+drop index if exists ix_order_item_comment_comment;
 
 alter table if exists property_item drop constraint if exists fk_property_item_property_id;
 drop index if exists ix_property_item_property_id;
@@ -273,6 +407,8 @@ drop table if exists app cascade;
 
 drop table if exists brand cascade;
 
+drop table if exists comment cascade;
+
 drop table if exists file cascade;
 
 drop table if exists goods cascade;
@@ -283,11 +419,23 @@ drop table if exists goods_property_item cascade;
 
 drop table if exists goods_tree cascade;
 
+drop table if exists log cascade;
+
 drop table if exists media cascade;
 
 drop table if exists news cascade;
 
 drop table if exists news_media cascade;
+
+drop table if exists order cascade;
+
+drop table if exists order_comment cascade;
+
+drop table if exists order_log cascade;
+
+drop table if exists order_item cascade;
+
+drop table if exists order_item_comment cascade;
 
 drop table if exists property cascade;
 
