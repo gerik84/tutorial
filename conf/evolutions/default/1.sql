@@ -143,7 +143,7 @@ create table news_media (
   constraint pk_news_media primary key (news_id,media_id)
 );
 
-create table order (
+create table orders (
   id                            uuid not null,
   when_created                  bigint,
   when_updated                  bigint,
@@ -151,20 +151,20 @@ create table order (
   user_id                       uuid,
   status                        varchar(9),
   price                         bigint,
-  constraint ck_order_status check ( status in ('none','deleted','pending','done','decline','suspended','archive')),
-  constraint pk_order primary key (id)
+  constraint ck_orders_status check ( status in ('none','deleted','pending','done','decline','suspended','archive')),
+  constraint pk_orders primary key (id)
 );
 
-create table order_comment (
-  order_id                      uuid not null,
+create table orders_comment (
+  orders_id                     uuid not null,
   comment_id                    uuid not null,
-  constraint pk_order_comment primary key (order_id,comment_id)
+  constraint pk_orders_comment primary key (orders_id,comment_id)
 );
 
-create table order_log (
-  order_id                      uuid not null,
+create table orders_log (
+  orders_id                     uuid not null,
   log_id                        uuid not null,
-  constraint pk_order_log primary key (order_id,log_id)
+  constraint pk_orders_log primary key (orders_id,log_id)
 );
 
 create table order_item (
@@ -292,25 +292,25 @@ create index ix_news_media_news on news_media (news_id);
 alter table news_media add constraint fk_news_media_media foreign key (media_id) references media (id) on delete restrict on update restrict;
 create index ix_news_media_media on news_media (media_id);
 
-alter table order add constraint fk_order_user_id foreign key (user_id) references users (id) on delete restrict on update restrict;
-create index ix_order_user_id on order (user_id);
+alter table orders add constraint fk_orders_user_id foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_orders_user_id on orders (user_id);
 
-alter table order_comment add constraint fk_order_comment_order foreign key (order_id) references order (id) on delete restrict on update restrict;
-create index ix_order_comment_order on order_comment (order_id);
+alter table orders_comment add constraint fk_orders_comment_orders foreign key (orders_id) references orders (id) on delete restrict on update restrict;
+create index ix_orders_comment_orders on orders_comment (orders_id);
 
-alter table order_comment add constraint fk_order_comment_comment foreign key (comment_id) references comment (id) on delete restrict on update restrict;
-create index ix_order_comment_comment on order_comment (comment_id);
+alter table orders_comment add constraint fk_orders_comment_comment foreign key (comment_id) references comment (id) on delete restrict on update restrict;
+create index ix_orders_comment_comment on orders_comment (comment_id);
 
-alter table order_log add constraint fk_order_log_order foreign key (order_id) references order (id) on delete restrict on update restrict;
-create index ix_order_log_order on order_log (order_id);
+alter table orders_log add constraint fk_orders_log_orders foreign key (orders_id) references orders (id) on delete restrict on update restrict;
+create index ix_orders_log_orders on orders_log (orders_id);
 
-alter table order_log add constraint fk_order_log_log foreign key (log_id) references log (id) on delete restrict on update restrict;
-create index ix_order_log_log on order_log (log_id);
+alter table orders_log add constraint fk_orders_log_log foreign key (log_id) references log (id) on delete restrict on update restrict;
+create index ix_orders_log_log on orders_log (log_id);
 
 alter table order_item add constraint fk_order_item_goods_id foreign key (goods_id) references goods (id) on delete restrict on update restrict;
 create index ix_order_item_goods_id on order_item (goods_id);
 
-alter table order_item add constraint fk_order_item_order_id foreign key (order_id) references order (id) on delete restrict on update restrict;
+alter table order_item add constraint fk_order_item_order_id foreign key (order_id) references orders (id) on delete restrict on update restrict;
 create index ix_order_item_order_id on order_item (order_id);
 
 alter table order_item_comment add constraint fk_order_item_comment_order_item foreign key (order_item_id) references order_item (id) on delete restrict on update restrict;
@@ -367,20 +367,20 @@ drop index if exists ix_news_media_news;
 alter table if exists news_media drop constraint if exists fk_news_media_media;
 drop index if exists ix_news_media_media;
 
-alter table if exists order drop constraint if exists fk_order_user_id;
-drop index if exists ix_order_user_id;
+alter table if exists orders drop constraint if exists fk_orders_user_id;
+drop index if exists ix_orders_user_id;
 
-alter table if exists order_comment drop constraint if exists fk_order_comment_order;
-drop index if exists ix_order_comment_order;
+alter table if exists orders_comment drop constraint if exists fk_orders_comment_orders;
+drop index if exists ix_orders_comment_orders;
 
-alter table if exists order_comment drop constraint if exists fk_order_comment_comment;
-drop index if exists ix_order_comment_comment;
+alter table if exists orders_comment drop constraint if exists fk_orders_comment_comment;
+drop index if exists ix_orders_comment_comment;
 
-alter table if exists order_log drop constraint if exists fk_order_log_order;
-drop index if exists ix_order_log_order;
+alter table if exists orders_log drop constraint if exists fk_orders_log_orders;
+drop index if exists ix_orders_log_orders;
 
-alter table if exists order_log drop constraint if exists fk_order_log_log;
-drop index if exists ix_order_log_log;
+alter table if exists orders_log drop constraint if exists fk_orders_log_log;
+drop index if exists ix_orders_log_log;
 
 alter table if exists order_item drop constraint if exists fk_order_item_goods_id;
 drop index if exists ix_order_item_goods_id;
@@ -427,11 +427,11 @@ drop table if exists news cascade;
 
 drop table if exists news_media cascade;
 
-drop table if exists order cascade;
+drop table if exists orders cascade;
 
-drop table if exists order_comment cascade;
+drop table if exists orders_comment cascade;
 
-drop table if exists order_log cascade;
+drop table if exists orders_log cascade;
 
 drop table if exists order_item cascade;
 

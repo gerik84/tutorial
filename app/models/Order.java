@@ -9,6 +9,7 @@ import java.util.List;
  * Created by pavel on 21.11.17.
  */
 @Entity
+@Table(name = "orders")
 public class Order extends UUIDBaseModel {
 
     @ManyToOne
